@@ -1,4 +1,4 @@
-import styles from "./allPosts.module";
+import styles from "./allPosts.module.scss";
 
 function AllPosts() {
   return <h1>All Posts</h1>;
