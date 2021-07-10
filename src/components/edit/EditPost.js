@@ -1,8 +1,10 @@
 import PopupFormPost from "../popupFormPost/PopupFormPost";
 import { useDispatch, useSelector } from "react-redux";
+import { checkInputData } from "../../helpers/dataValidation";
+import { editPostById } from "../../features/posts/actions/editPost";
 
 function EditPost() {
-  const { title, price, is_available } = useSelector(
+  const { title, price, is_available, id } = useSelector(
     state => state.posts
   ).selectedPost;
   const dispatch = useDispatch();
@@ -13,7 +15,8 @@ function EditPost() {
       availableDef={is_available}
       type={"edit"}
       onSubmit={data => {
-        console.log(data);
+        data = checkInputData(data);
+        dispatch(editPostById({ id, data }));
       }}
     />
   );

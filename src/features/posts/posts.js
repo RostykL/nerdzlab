@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { createPost } from "./actions/createPost";
 import { getPosts } from "./actions/getPosts";
 import { deletePost } from "./actions/deletePost";
+import { editPostById } from "./actions/editPost";
 
 const initialState = {
   posts: [],
@@ -26,7 +27,6 @@ export const posts = createSlice({
     },
     [createPost.fulfilled]: (state, { payload: { data } }) => {
       state.loading = false;
-      console.log(data, "created");
       state.posts.push(data);
     },
     [createPost.rejected]: (state, { payload }) => {
@@ -42,6 +42,21 @@ export const posts = createSlice({
       state.posts = data;
     },
     [getPosts.rejected]: (state, { payload }) => {
+      state.loading = false;
+      state.error = payload;
+    },
+
+    [editPostById.pending]: state => {
+      state.loading = true;
+    },
+    [editPostById.fulfilled]: (state, { payload }) => {
+      state.loading = false;
+      const postToUpdate = state.posts.findIndex(
+        post => post.id === payload.id
+      );
+      state.posts[postToUpdate] = payload;
+    },
+    [editPostById.rejected]: (state, { payload }) => {
       state.loading = false;
       state.error = payload;
     },

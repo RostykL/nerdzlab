@@ -1,12 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { toggle } from "../../helpers/toggle";
 
 const initialState = {
   edit: false,
   create: false,
-};
-
-const toggle = key => (state, action) => {
-  state[key] = !state[key];
 };
 
 const popup = createSlice({
