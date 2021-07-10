@@ -46,16 +46,6 @@ export const posts = createSlice({
       state.error = payload;
     },
 
-    // [getPostById.fulfilled]: (state, action) => {
-    //   state.post = action.payload;
-    // },
-    // [getPostById.rejected]: (state, { payload }) => {
-    //   state.error = payload;
-    // },
-
-    [deletePost.pending]: (state, action) => {
-      state.loading = true;
-    },
     [deletePost.fulfilled]: (state, action) => {
       state.loading = false;
       const { arg } = action.meta;

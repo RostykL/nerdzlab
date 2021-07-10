@@ -3,7 +3,7 @@ import { deletePost } from "../../features/posts/actions/deletePost";
 import { useDispatch } from "react-redux";
 import { useCallback } from "react";
 import { getPostById } from "../../features/posts/posts";
-import { toggle } from "../../features/popup/popup";
+import { toggleEdit } from "../../features/popup/popup";
 
 function Post({ title, price, is_available, id }) {
   const dispatch = useDispatch();
@@ -12,7 +12,7 @@ function Post({ title, price, is_available, id }) {
   }, [dispatch, id]);
 
   const editPostById = useCallback(() => {
-    dispatch(toggle());
+    dispatch(toggleEdit());
     dispatch(getPostById(id));
   }, [dispatch, id]);
 
