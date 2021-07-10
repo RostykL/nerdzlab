@@ -1,15 +1,12 @@
-import styles from "./login.module.scss";
-
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "react-loader-spinner";
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { loginUser } from "../../features/login/actions/loginUserThunk";
-import { changeStatus } from "../../features/login/login";
 
 function Login() {
-  const { register, handleSubmit, formState } = useForm();
+  const { register, handleSubmit } = useForm();
   const dispatch = useDispatch();
   const history = useHistory();
   const { loading, error } = useSelector(state => state.login);

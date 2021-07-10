@@ -27,7 +27,6 @@ export const posts = createSlice({
     },
     [createPost.fulfilled]: (state, action) => {
       state.loading = false;
-      console.log(action);
       state.posts.push(action.payload.data);
     },
     [createPost.rejected]: (state, { payload }) => {

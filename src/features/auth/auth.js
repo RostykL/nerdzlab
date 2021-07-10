@@ -12,9 +12,6 @@ const auth = createSlice({
     setAuth: (state, action) => {
       state.logged = action.payload;
     },
-    setAuthError: (state, action) => {
-      state.error = action.payload;
-    },
   },
 });
 

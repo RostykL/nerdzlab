@@ -4,6 +4,7 @@ import { toggle } from "../../helpers/toggle";
 const initialState = {
   edit: false,
   create: false,
+  delete: false,
 };
 
 const popup = createSlice({

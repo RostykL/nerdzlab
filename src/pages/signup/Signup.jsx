@@ -1,4 +1,3 @@
-import styles from "./signup.module.scss";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { signupUser } from "../../features/signup/actions/signupUser";
