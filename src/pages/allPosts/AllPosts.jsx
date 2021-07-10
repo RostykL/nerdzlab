@@ -1,18 +1,20 @@
 import styles from "./allPosts.module.scss";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPosts } from "../../features/posts/actions/getPosts";
 import Loader from "react-loader-spinner";
 import { loginRequired } from "../../hoc/loginRequired";
 import Post from "../../components/post/Post";
 import { toggleCreate } from "../../features/popup/popup";
+import Pagination from "../../components/pagination/Pagination";
 
 function AllPosts() {
   const dispatch = useDispatch();
   const { posts, loading } = useSelector(state => state.posts);
+  const [page, setPage] = useState(1);
   useEffect(() => {
-    dispatch(getPosts());
-  }, [dispatch]);
+    dispatch(getPosts(page));
+  }, [dispatch, page]);
 
   return (
     <>
@@ -38,11 +40,7 @@ function AllPosts() {
             </button>
             {!loading && !posts.length && "No posts"}
           </div>
-          <ul className={styles.pagination_posts}>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-          </ul>
+          <Pagination page={page} len={posts.length} setPage={setPage} />
         </div>
       </div>
     </>

@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const getPosts = createAsyncThunk("posts/getPosts", async () => {
+export const getPosts = createAsyncThunk("posts/getPosts", async page => {
   const token = JSON.parse(localStorage.token) ?? "";
 
   return axios({
@@ -10,7 +10,7 @@ export const getPosts = createAsyncThunk("posts/getPosts", async () => {
       Accept: "application/json",
       Authorization: `Bearer ${token}`,
     },
-    url: "https://interview.nerdzlab.dev/api/posts",
+    url: `https://interview.nerdzlab.dev/api/posts?page=${page}`,
   })
     .then(res => {
       return res.data;
