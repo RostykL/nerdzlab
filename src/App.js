@@ -14,10 +14,10 @@ function App() {
 
   return (
     <>
+      {/*Popup*/}
       <CreatePost />
-
-      {/*edit post*/}
       <EditPost />
+
       <Header />
       <Switch>
         <Route exact path={"/"} component={AllPosts} />

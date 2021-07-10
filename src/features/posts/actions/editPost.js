@@ -16,7 +16,6 @@ export const editPostById = createAsyncThunk(
       url: `https://interview.nerdzlab.dev/api/posts/${id}`,
     })
       .then(res => {
-        console.log(res);
         return res.data.data;
       })
       .catch(e => {

@@ -20,7 +20,6 @@ export const createPost = createAsyncThunk(
       url: "https://interview.nerdzlab.dev/api/posts",
     })
       .then(res => {
-        console.log(res, "posts");
         return res.data;
       })
       .catch(e => {
