@@ -1,6 +1,6 @@
 .wrapper {
-  min-height: 100vh;
-  background-color: red;
+  min-height: calc(100vh - 21px - 40px);
+  background-color: teal;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -33,3 +33,9 @@
   }
 }
 
+
+.create_post {
+  height: 30px;
+  padding: 0 10px;
+  margin: 5px;
+}

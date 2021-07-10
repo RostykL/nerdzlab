@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import styles from "./header.module.scss";
 import { notLoggedHeader } from "../../hoc/notLoggedHeader";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setAuth } from "../../features/auth/auth";
 
 function Header() {

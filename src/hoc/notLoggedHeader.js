@@ -1,7 +1,6 @@
 import { NavLink } from "react-router-dom";
 import styles from "../components/header/header.module.scss";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 export function notLoggedHeader(Component) {
   return function (props) {

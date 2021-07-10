@@ -2,11 +2,18 @@ import styles from "./post.module.scss";
 import { deletePost } from "../../features/posts/actions/deletePost";
 import { useDispatch } from "react-redux";
 import { useCallback } from "react";
+import { getPostById } from "../../features/posts/posts";
+import { toggle } from "../../features/popup/popup";
 
 function Post({ title, price, is_available, id }) {
   const dispatch = useDispatch();
   const deletePostById = useCallback(() => {
     dispatch(deletePost(id));
+  }, [dispatch, id]);
+
+  const editPostById = useCallback(() => {
+    dispatch(toggle());
+    dispatch(getPostById(id));
   }, [dispatch, id]);
 
   return (
@@ -20,7 +27,9 @@ function Post({ title, price, is_available, id }) {
         <button className={styles.del} onClick={deletePostById}>
           delete
         </button>
-        <button className={styles.edit}>edit</button>
+        <button className={styles.edit} onClick={editPostById}>
+          edit
+        </button>
       </div>
     </div>
   );

@@ -10,8 +10,7 @@ const auth = createSlice({
   initialState,
   reducers: {
     setAuth: (state, action) => {
-      localStorage.setItem("auth", action.payload);
-      state.logged = JSON.parse(localStorage.auth);
+      state.logged = action.payload;
     },
     setAuthError: (state, action) => {
       state.error = action.payload;

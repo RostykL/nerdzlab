@@ -8,6 +8,9 @@ import { getPostById } from "../../features/posts/actions/getPostById";
 import { loginRequired } from "../../hoc/loginRequired";
 import { deletePost } from "../../features/posts/actions/deletePost";
 import Post from "../../components/post/Post";
+import { toggle } from "../../features/popup/popup";
+import Popup from "../../components/popup/Popup";
+import CreatePost from "../../components/popupCreatePost/createPost";
 
 function AllPosts() {
   const dispatch = useDispatch();
@@ -16,44 +19,12 @@ function AllPosts() {
     dispatch(getPosts());
   }, [dispatch]);
 
-  const deletePostById = (e, id) => {
-    e.preventDefault();
-    dispatch(deletePost(id));
-    // dispatch(getPostById(id));
-  };
-
-  const addPost = () => {
-    const price = Number(prompt("price"));
-    const title = prompt("title");
-    const is_available = prompt("is available?");
-    dispatch(createPost({ price: 100, title, is_available: false }));
-  };
-
   return (
     <>
-      {/*<div>*/}
-      {/*  posts:*/}
-      {/*  <div>*/}
-      {/*    {loading ? (*/}
-      {/*      <Loader type="ThreeDots" color="#00BFFF" height={15} width={15} />*/}
-      {/*    ) : null}*/}
-      {/*    {!loading &&*/}
-      {/*      posts.map(el => {*/}
-      {/*        return (*/}
-      {/*          <div key={el.id}>*/}
-      {/*            <hr />*/}
-      {/*            <div>title: {el.title}</div>*/}
-      {/*            <div>price: {el.price}</div>*/}
-      {/*            <div>is_available: {el.is_available ? "Yes" : "No"}</div>*/}
-      {/*            <button onClick={e => deletePostById(e, el.id)}>*/}
-      {/*              delete*/}
-      {/*            </button>*/}
-      {/*          </div>*/}
-      {/*        );*/}
-      {/*      })}*/}
-      {/*<button onClick={addPost}>create post</button>*/}
-      {/*  </div>*/}
-      {/*</div>*/}
+      <button onClick={() => dispatch(toggle())} className={styles.create_post}>
+        create post
+      </button>
+
       <div className={styles.wrapper}>
         <div className={styles.posts}>
           <div className={styles.list}>

@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createPost } from "./actions/createPost";
 import { getPosts } from "./actions/getPosts";
-import { getPostById } from "./actions/getPostById";
 import { deletePost } from "./actions/deletePost";
 
 const initialState = {
@@ -14,7 +13,13 @@ const initialState = {
 export const posts = createSlice({
   name: "posts",
   initialState,
-  reducers: {},
+  reducers: {
+    getPostById: (state, action) => {
+      state.selectedPost = state.posts.filter(
+        ({ id }) => id === action.payload
+      )[0];
+    },
+  },
   extraReducers: {
     [createPost.pending]: state => {
       state.loading = true;
@@ -41,12 +46,12 @@ export const posts = createSlice({
       state.error = payload;
     },
 
-    [getPostById.fulfilled]: (state, action) => {
-      state.post = action.payload;
-    },
-    [getPostById.rejected]: (state, { payload }) => {
-      state.error = payload;
-    },
+    // [getPostById.fulfilled]: (state, action) => {
+    //   state.post = action.payload;
+    // },
+    // [getPostById.rejected]: (state, { payload }) => {
+    //   state.error = payload;
+    // },
 
     [deletePost.pending]: (state, action) => {
       state.loading = true;
@@ -63,6 +68,6 @@ export const posts = createSlice({
   },
 });
 
-export const {} = posts.actions;
+export const { getPostById } = posts.actions;
 
 export default posts.reducer;
