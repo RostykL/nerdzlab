@@ -1,36 +1,29 @@
 import styles from "./signup.module.scss";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { signupUser } from "../../features/slices/signup/actions/signupUser";
+import { signupUser } from "../../features/signup/actions/signupUser";
 import Loader from "react-loader-spinner";
 import { useEffect } from "react";
-import { changeStatus } from "../../features/slices/signup/signup";
 import { useHistory } from "react-router-dom";
 
 function Signup() {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
   const dispatch = useDispatch();
   const history = useHistory();
-  const { status } = useSelector(state => state.signup);
+  const { loading, error } = useSelector(state => state.signup);
   const onSubmit = data => {
     dispatch(signupUser(data));
   };
 
   useEffect(() => {
-    if (status === "success" || localStorage.token) {
+    if (localStorage.token) {
       history.push("/");
-      dispatch(changeStatus());
     }
-  }, [status]);
+  }, [loading]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      {status === "failed" && "failed"}
+      {error && "failed"}
       <div>
         <input
           type={"name"}
@@ -56,11 +49,11 @@ function Signup() {
           placeholder={"email"}
         />
       </div>
-      {status === "loading" ? (
+      {loading ? (
         <Loader type="ThreeDots" color="#00BFFF" height={15} width={15} />
       ) : (
         <div>
-          <input type="signup" />
+          <input type="submit" value={"sign up"} />
         </div>
       )}
     </form>

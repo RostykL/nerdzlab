@@ -1,0 +1,35 @@
+.wrapper {
+  min-height: 100vh;
+  background-color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .posts {
+    padding: 1em;
+    min-width: 100px;
+    background-color: green;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .list {
+      overflow-y: scroll;
+      max-height: 500px;
+      text-align: center;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+    .pagination_posts {
+      margin-top: 40px;
+      display: flex;
+      background-color: lightgreen;
+
+      li {
+        margin: 0 10px;
+      }
+    }
+  }
+}
+

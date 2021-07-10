@@ -1,9 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { setAuth } from "../../auth/auth";
 
 export const signupUser = createAsyncThunk(
   "signup/signupUser",
-  async ({ email, name, password }) => {
+  async ({ email, name, password }, { dispatch }) => {
     return axios({
       method: "post",
       headers: {
@@ -19,6 +20,7 @@ export const signupUser = createAsyncThunk(
     }).then(res => {
       const { token } = res.data;
       localStorage.setItem("token", JSON.stringify(token));
+      dispatch(setAuth(true));
       return res.data;
     });
   }

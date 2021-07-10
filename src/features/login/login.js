@@ -2,30 +2,25 @@ import { createSlice } from "@reduxjs/toolkit";
 import { loginUser } from "./actions/loginUserThunk";
 
 const initialState = {
-  status: null,
+  loading: null,
+  error: null,
 };
 
 const login = createSlice({
   name: "login",
   initialState,
-  reducers: {
-    changeStatus: state => {
-      state.status = null;
-    },
-  },
+  reducers: {},
   extraReducers: {
     [loginUser.pending]: state => {
-      state.status = "loading";
+      state.loading = true;
     },
     [loginUser.fulfilled]: state => {
-      state.status = "success";
+      state.loading = false;
     },
     [loginUser.rejected]: state => {
-      state.status = "failed";
+      state.loading = false;
     },
   },
 });
-
-export const { changeStatus } = login.actions;
 
 export default login.reducer;

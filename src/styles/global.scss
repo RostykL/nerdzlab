@@ -10,6 +10,24 @@ a {
   color: black;
 }
 
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+button {
+  &:hover {
+    cursor: pointer;
+  }
+  &:focus{
+    outline: none;
+  }
+}
+
 input, button {
   border: none;
   &:focus {

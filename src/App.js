@@ -7,12 +7,12 @@ import Header from "./components/header/header";
 import { useEffect } from "react";
 
 function App() {
-  const history = useHistory();
-  useEffect(() => {
-    if (!localStorage.token) {
-      history.push("/login");
-    }
-  }, []);
+  // const history = useHistory();
+  // useEffect(() => {
+  //   if (!localStorage.token) {
+  //     history.push("/login");
+  //   }
+  // }, []);
 
   return (
     <>

@@ -5,30 +5,25 @@ import { useDispatch, useSelector } from "react-redux";
 import Loader from "react-loader-spinner";
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { loginUser } from "../../features/slices/login/actions/loginUserThunk";
-import { changeStatus } from "../../features/slices/login/login";
+import { loginUser } from "../../features/login/actions/loginUserThunk";
+import { changeStatus } from "../../features/login/login";
 
 function Login() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit, formState } = useForm();
   const dispatch = useDispatch();
   const history = useHistory();
-  const { status } = useSelector(state => state.login);
+  const { loading, error } = useSelector(state => state.login);
   const onSubmit = data => dispatch(loginUser(data));
 
   useEffect(() => {
-    if (status === "success" || localStorage.token) {
+    if (localStorage.token) {
       history.push("/");
-      dispatch(changeStatus());
     }
-  }, [status]);
+  }, [loading]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      {status === "failed" && "failed"}
+      {error && "failed"}
       <div>
         <input
           type={"email"}
@@ -46,7 +41,7 @@ function Login() {
           minLength={8}
         />
       </div>
-      {status === "loading" ? (
+      {loading ? (
         <Loader type="ThreeDots" color="#00BFFF" height={15} width={15} />
       ) : (
         <div>
