@@ -1,25 +1,21 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import API from "../../../helpers/API";
+import URL from "../../../helpers/URL";
 
 export const editPostById = createAsyncThunk(
   "posts/editPostById",
   async ({ id, data }) => {
-    const token = JSON.parse(localStorage.token) ?? "";
-
-    return axios({
-      method: "post",
+    return API.post(`${URL.editPostById}/${id}`, data, {
       headers: {
         Accept: "application/json",
-        Authorization: `Bearer ${token}`,
       },
-      data,
-      url: `https://interview.nerdzlab.dev/api/posts/${id}`,
     })
       .then(res => {
         return res.data.data;
       })
       .catch(e => {
         console.log(e, "posts");
+        return e;
       });
   }
 );

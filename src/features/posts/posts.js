@@ -18,6 +18,9 @@ export const posts = createSlice({
     getPostById: (state, { payload }) => {
       state.selectedPost = state.posts.filter(({ id }) => id === payload)[0];
     },
+    resetSelectedPost: state => {
+      state.selectedPost = {};
+    },
   },
   extraReducers: {
     [createPost.pending]: state => {
@@ -44,15 +47,12 @@ export const posts = createSlice({
       state.error = payload;
     },
 
-    [editPostById.pending]: state => {
-      state.loading = true;
-    },
-    [editPostById.fulfilled]: (state, { payload }) => {
+    [editPostById.fulfilled]: (state, action) => {
       state.loading = false;
       const postToUpdate = state.posts.findIndex(
-        post => post.id === state.selectedPost.id
+        post => post.id === action.meta.arg.id
       );
-      state.posts[postToUpdate] = payload;
+      state.posts[postToUpdate] = action.payload;
     },
     [editPostById.rejected]: (state, { payload }) => {
       state.loading = false;
@@ -71,6 +71,6 @@ export const posts = createSlice({
   },
 });
 
-export const { getPostById } = posts.actions;
+export const { getPostById, resetSelectedPost } = posts.actions;
 
 export default posts.reducer;
