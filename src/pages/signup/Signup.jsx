@@ -10,6 +10,8 @@ function Signup() {
   const dispatch = useDispatch();
   const history = useHistory();
   const { loading, error } = useSelector(state => state.signup);
+  const { logged } = useSelector(state => state.auth);
+
   const onSubmit = data => {
     dispatch(signupUser(data));
   };
@@ -22,7 +24,8 @@ function Signup() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      {error && "failed"}
+      {error && !logged && "Something went wrong! Check your credentials"}
+      {logged && "successfully logged in"}
       <div>
         <input
           type={"name"}

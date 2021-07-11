@@ -14,8 +14,9 @@ const login = createSlice({
     [loginUser.pending]: state => {
       state.loading = true;
     },
-    [loginUser.fulfilled]: (state, action) => {
+    [loginUser.fulfilled]: state => {
       state.loading = false;
+      state.error = null;
     },
     [loginUser.rejected]: (state, { payload }) => {
       state.loading = false;

@@ -10,6 +10,7 @@ function Login() {
   const dispatch = useDispatch();
   const history = useHistory();
   const { loading, error } = useSelector(state => state.login);
+  const { logged } = useSelector(state => state.auth);
   const onSubmit = data => dispatch(loginUser(data));
 
   useEffect(() => {
@@ -20,7 +21,8 @@ function Login() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      {error && "failed"}
+      {error && !logged && "Something went wrong! Check your credentials"}
+      {logged && "successfully logged in"}
       <div>
         <input
           type={"email"}

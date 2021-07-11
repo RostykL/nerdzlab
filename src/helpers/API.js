@@ -2,7 +2,6 @@ import axios from "axios";
 import { setAuth } from "../features/auth/auth";
 
 const setupInterceptors = store => {
-  console.log(store);
   axios.interceptors.request.use(
     function (config) {
       const token = JSON.parse(localStorage.getItem("token")) ?? null;
@@ -23,7 +22,6 @@ const setupInterceptors = store => {
     },
     function (error) {
       if (error.response.status === 401) {
-        console.log("YOU ARE NOT AUTHORIZED!");
         store.dispatch(setAuth(false));
       }
       return Promise.reject(error);

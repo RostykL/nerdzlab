@@ -16,6 +16,7 @@ const signup = createSlice({
     },
     [signupUser.fulfilled]: state => {
       state.loading = false;
+      state.error = null;
     },
     [signupUser.rejected]: (state, { payload }) => {
       state.loading = false;
