@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 export function notLoggedHeader(Component) {
   return function (props) {
     const authStatus = useSelector(state => state.auth).logged;
-    if (authStatus) {
+    if (authStatus && localStorage.token) {
       return <Component {...props} />;
     }
 

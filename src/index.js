@@ -6,8 +6,10 @@ import { Provider } from "react-redux";
 import store from "./features/store";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";
+import API from "./helpers/API";
 
 let persistor = persistStore(store);
+API.setupInterceptors(store);
 
 ReactDOM.render(
   <React.StrictMode>

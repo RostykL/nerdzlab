@@ -10,14 +10,13 @@ function CreatePost() {
     <PopupFormPost
       titleDef={""}
       priceDef={""}
-      availableDef={false}
+      availableDef
       type={"create"}
       onSubmit={(data, e) => {
         data = checkInputData(data);
         if (!isNaN(data.price)) {
           dispatch(createPost(data));
           dispatch(toggleAllOff());
-          e.target.reset();
         }
       }}
     />

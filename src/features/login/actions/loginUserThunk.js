@@ -16,11 +16,13 @@ export const loginUser = createAsyncThunk(
         password,
       },
       url: "https://interview.nerdzlab.dev/api/auth/login",
-    }).then(res => {
-      const { token } = res.data;
-      localStorage.setItem("token", JSON.stringify(token));
-      dispatch(setAuth(true));
-      return res.data;
-    });
+    })
+      .then(res => {
+        const { token } = res.data;
+        localStorage.setItem("token", JSON.stringify(token));
+        dispatch(setAuth(true));
+        return res.data;
+      })
+      .catch(e => e);
   }
 );

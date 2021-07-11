@@ -23,6 +23,7 @@ function AllPosts() {
       {/*Popup*/}
       <CreatePost />
       <EditPost />
+
       <div className={styles.wrapper}>
         <div className={styles.posts}>
           <div className={styles.list}>

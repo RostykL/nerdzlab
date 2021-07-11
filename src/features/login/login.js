@@ -14,11 +14,12 @@ const login = createSlice({
     [loginUser.pending]: state => {
       state.loading = true;
     },
-    [loginUser.fulfilled]: state => {
+    [loginUser.fulfilled]: (state, action) => {
       state.loading = false;
     },
-    [loginUser.rejected]: state => {
+    [loginUser.rejected]: (state, { payload }) => {
       state.loading = false;
+      state.error = payload;
     },
   },
 });

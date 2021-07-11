@@ -21,7 +21,6 @@ function EditPost() {
         data = checkInputData(data);
         dispatch(editPostById({ id, data }));
         dispatch(toggleAllOff());
-        e.target.reset();
       }}
     />
   );
