@@ -2,6 +2,7 @@ import Popup from "../popup/Popup";
 import { useForm } from "react-hook-form";
 import styles from "./createPostPopup.module.scss";
 import { useSelector } from "react-redux";
+import { debounce } from "lodash";
 
 function PopupFormPost({ titleDef, priceDef, availableDef, onSubmit, type }) {
   const { register, handleSubmit } = useForm();
@@ -10,13 +11,15 @@ function PopupFormPost({ titleDef, priceDef, availableDef, onSubmit, type }) {
   return (
     <>
       <Popup show={show}>
-        <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+        <form
+          onSubmit={handleSubmit(debounce(onSubmit, 500))}
+          className={styles.form}>
           <div>
             <input
               className={styles.title}
               {...register("title", { required: true })}
               placeholder={"title"}
-              defaultValue={titleDef ?? ""}
+              defaultValue={titleDef}
             />
           </div>
           <div>
@@ -25,7 +28,7 @@ function PopupFormPost({ titleDef, priceDef, availableDef, onSubmit, type }) {
               type={"number"}
               {...register("price", { required: true })}
               placeholder={"price"}
-              defaultValue={priceDef ?? ""}
+              defaultValue={priceDef}
             />
           </div>
           <label className={styles.available}>

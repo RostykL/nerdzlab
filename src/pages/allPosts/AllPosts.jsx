@@ -7,6 +7,8 @@ import { loginRequired } from "../../hoc/loginRequired";
 import Post from "../../components/post/Post";
 import { toggleCreate } from "../../features/popup/popup";
 import Pagination from "../../components/pagination/Pagination";
+import CreatePost from "../../components/create/createPost";
+import EditPost from "../../components/edit/EditPost";
 
 function AllPosts() {
   const dispatch = useDispatch();
@@ -18,6 +20,9 @@ function AllPosts() {
 
   return (
     <>
+      {/*Popup*/}
+      <CreatePost />
+      <EditPost />
       <div className={styles.wrapper}>
         <div className={styles.posts}>
           <div className={styles.list}>
@@ -31,8 +36,7 @@ function AllPosts() {
                 />
               ) : null}
             </div>
-            {!loading &&
-              posts.map(el => <Post key={el.id} {...el} id={el.id} />)}
+            {!loading && posts.map(el => <Post key={el.id} {...el} />)}
             <button
               onClick={() => dispatch(toggleCreate())}
               className={styles.create_post}>
