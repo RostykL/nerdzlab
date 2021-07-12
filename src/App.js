@@ -5,9 +5,6 @@ import Login from "./pages/login/Login";
 import Signup from "./pages/signup/Signup";
 import Header from "./components/header/header";
 
-import CreatePost from "./components/create/createPost";
-import EditPost from "./components/edit/EditPost";
-
 function App() {
   return (
     <>
