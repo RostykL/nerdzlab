@@ -23,7 +23,7 @@ export function loginRequired(Component) {
     }
     return (
       <Wrapper>
-        <Title>You are not allowed to be here!</Title>
+        <Title>Login first to view the page!</Title>
         <GoTo to={"/login"}>login </GoTo>
         <GoTo to={"/signup"}>sign up</GoTo>
       </Wrapper>
