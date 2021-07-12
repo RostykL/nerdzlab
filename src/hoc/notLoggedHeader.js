@@ -1,10 +1,11 @@
 import { NavLink } from "react-router-dom";
 import styles from "../components/header/header.module.scss";
 import { useSelector } from "react-redux";
+import SELECTOR from "../features/selectors";
 
 export function notLoggedHeader(Component) {
   return function (props) {
-    const authStatus = useSelector(state => state.auth).logged;
+    const authStatus = useSelector(SELECTOR.getAuth).logged;
     if (authStatus && localStorage.token) {
       return <Component {...props} />;
     }

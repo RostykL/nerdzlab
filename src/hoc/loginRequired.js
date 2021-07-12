@@ -1,9 +1,10 @@
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
+import SELECTOR from "../features/selectors";
 
 export function loginRequired(Component) {
   return function (props) {
-    const authStatus = useSelector(state => state.auth).logged;
+    const authStatus = useSelector(SELECTOR.getAuth).logged;
 
     if (authStatus && localStorage.token) {
       return <Component {...props} />;

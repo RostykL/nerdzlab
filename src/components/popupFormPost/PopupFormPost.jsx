@@ -5,14 +5,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { debounce } from "lodash";
 import { useEffect } from "react";
 import { resetSelectedPost } from "../../features/posts/posts";
+import SELECTOR from "../../features/selectors";
 
 function PopupFormPost({ onSubmit, type }) {
   const { register, handleSubmit, reset } = useForm();
-  const show = useSelector(state => state.popup)[type];
+  const show = useSelector(SELECTOR.getPopup)[type];
   const dispatch = useDispatch();
   const { title, price, is_available } = useSelector(
-    state => state.posts.selectedPost
-  );
+    SELECTOR.getPosts
+  ).selectedPost;
+
   useEffect(() => {
     if (!show) {
       reset();

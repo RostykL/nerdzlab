@@ -4,13 +4,14 @@ import Loader from "react-loader-spinner";
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { loginUser } from "../../features/login/actions/loginUserThunk";
+import SELECTOR from "../../features/selectors";
 
 function Login() {
   const { register, handleSubmit } = useForm();
   const dispatch = useDispatch();
   const history = useHistory();
-  const { loading, error } = useSelector(state => state.login);
-  const { logged } = useSelector(state => state.auth);
+  const { loading, error } = useSelector(SELECTOR.getLogin);
+  const { logged } = useSelector(SELECTOR.getAuth);
   const onSubmit = data => dispatch(loginUser(data));
 
   useEffect(() => {

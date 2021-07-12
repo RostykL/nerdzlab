@@ -9,10 +9,11 @@ import { toggleCreate } from "../../features/popup/popup";
 import Pagination from "../../components/pagination/Pagination";
 import CreatePost from "../../components/create/createPost";
 import EditPost from "../../components/edit/EditPost";
+import SELECTOR from "../../features/selectors";
 
 function AllPosts() {
   const dispatch = useDispatch();
-  const { posts, loading } = useSelector(state => state.posts);
+  const { posts, loading } = useSelector(SELECTOR.getPosts);
   const [page, setPage] = useState(1);
   useEffect(() => {
     dispatch(getPosts(page));

@@ -4,13 +4,14 @@ import { signupUser } from "../../features/signup/actions/signupUser";
 import Loader from "react-loader-spinner";
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import SELECTOR from "../../features/selectors";
 
 function Signup() {
   const { register, handleSubmit } = useForm();
   const dispatch = useDispatch();
   const history = useHistory();
-  const { loading, error } = useSelector(state => state.signup);
-  const { logged } = useSelector(state => state.auth);
+  const { loading, error } = useSelector(SELECTOR.getSignup);
+  const { logged } = useSelector(SELECTOR.getAuth);
 
   const onSubmit = data => {
     dispatch(signupUser(data));
