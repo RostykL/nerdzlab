@@ -22,7 +22,6 @@ export const createPost = createAsyncThunk(
         return res.data;
       })
       .catch(e => {
-        console.log(e, "posts");
         return e;
       });
   }

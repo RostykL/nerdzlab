@@ -12,7 +12,6 @@ export const deletePost = createAsyncThunk("posts/deletePost", async id => {
       return res.data;
     })
     .catch(e => {
-      console.log(e, "posts");
       return e;
     });
 });

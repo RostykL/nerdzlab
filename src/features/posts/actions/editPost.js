@@ -14,7 +14,6 @@ export const editPostById = createAsyncThunk(
         return res.data.data;
       })
       .catch(e => {
-        console.log(e, "posts");
         return e;
       });
   }

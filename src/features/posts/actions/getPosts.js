@@ -12,7 +12,6 @@ export const getPosts = createAsyncThunk("posts/getPosts", async page => {
       return res.data;
     })
     .catch(e => {
-      console.log(e, "posts");
       return e;
     });
 });
