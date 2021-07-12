@@ -1,9 +1,18 @@
-import styles from "./post.module.scss";
 import { deletePost } from "../../features/posts/actions/deletePost";
 import { useDispatch } from "react-redux";
 import { useCallback } from "react";
 import { getPostById } from "../../features/posts/posts";
 import { toggleEdit } from "../../features/popup/popup";
+import {
+  Delete,
+  Edit,
+  IsAvailable,
+  Operation,
+  PostInfo,
+  PostWrapper,
+  Price,
+  Title,
+} from "./post.styled";
 
 function Post({ title, price, is_available, id }) {
   const dispatch = useDispatch();
@@ -17,21 +26,22 @@ function Post({ title, price, is_available, id }) {
   }, [dispatch, id]);
 
   return (
-    <div className={styles.post}>
-      <div className={styles.post_info}>
-        <span className={styles.title}>Title: {title} </span>
-        <span>Price: {price} </span>
-        <span>availability: {is_available ? "Yes" : "No"}</span>
-      </div>
-      <div className={styles.operation}>
-        <button className={styles.del} onClick={deletePostById}>
-          delete
-        </button>
-        <button className={styles.edit} onClick={editPostById}>
-          edit
-        </button>
-      </div>
-    </div>
+    <PostWrapper>
+      <PostInfo>
+        <Title>{title}</Title>
+        <Price>
+          <span>Cost:</span>
+          {price}
+        </Price>
+        <IsAvailable is_available={is_available}>
+          <span>availability:</span> {is_available ? "YES" : "NO"}
+        </IsAvailable>
+      </PostInfo>
+      <Operation>
+        <Delete onClick={deletePostById}>Delete</Delete>
+        <Edit onClick={editPostById}>Edit</Edit>
+      </Operation>
+    </PostWrapper>
   );
 }
 

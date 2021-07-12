@@ -9,10 +9,10 @@ function CreatePost() {
   const dispatch = useDispatch();
 
   const onSubmitCallback = useCallback(
-    data => {
-      const checkedData = checkInputData(data);
+    inputData => {
+      const data = checkInputData(inputData);
       if (!isNaN(data.price)) {
-        dispatch(createPost(checkedData));
+        dispatch(createPost(data));
         dispatch(toggleAllOff());
       }
     },

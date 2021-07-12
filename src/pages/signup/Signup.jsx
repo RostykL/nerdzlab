@@ -1,10 +1,12 @@
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { signupUser } from "../../features/signup/actions/signupUser";
-import Loader from "react-loader-spinner";
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import SELECTOR from "../../features/selectors";
+import { Form, Input } from "../../styled/general.styled";
+import FormLoader from "../../components/loader/Loader";
+import FormButtons from "../../components/FormButtons/FormButtons";
 
 function Signup() {
   const { register, handleSubmit } = useForm();
@@ -24,11 +26,11 @@ function Signup() {
   }, [loading]);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <Form onSubmit={handleSubmit(onSubmit)}>
       {error && !logged && "Something went wrong! Check your credentials"}
       {logged && "successfully logged in"}
       <div>
-        <input
+        <Input
           type={"name"}
           required
           {...register("name", { required: true })}
@@ -36,7 +38,7 @@ function Signup() {
         />
       </div>
       <div>
-        <input
+        <Input
           type={"password"}
           required
           {...register("password", { required: true })}
@@ -45,7 +47,7 @@ function Signup() {
         />
       </div>
       <div>
-        <input
+        <Input
           type={"email"}
           required
           {...register("email", { required: true })}
@@ -53,13 +55,11 @@ function Signup() {
         />
       </div>
       {loading ? (
-        <Loader type="ThreeDots" color="#00BFFF" height={15} width={15} />
+        <FormLoader height={30} width={30} />
       ) : (
-        <div>
-          <input type="submit" value={"sign up"} />
-        </div>
+        <FormButtons buttonType={"Sign up"} />
       )}
-    </form>
+    </Form>
   );
 }
 

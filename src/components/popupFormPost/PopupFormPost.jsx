@@ -1,11 +1,12 @@
 import Popup from "../popup/Popup";
 import { useForm } from "react-hook-form";
-import styles from "./createPostPopup.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { debounce } from "lodash";
 import { useEffect } from "react";
 import { resetSelectedPost } from "../../features/posts/posts";
 import SELECTOR from "../../features/selectors";
+import { Form, PopupCheckboxLabel, PopupInput } from "./popupFormPost.styled";
+import FormButtons from "../FormButtons/FormButtons";
 
 function PopupFormPost({ onSubmit, type }) {
   const { register, handleSubmit, reset } = useForm();
@@ -25,36 +26,32 @@ function PopupFormPost({ onSubmit, type }) {
   return (
     <>
       <Popup show={show}>
-        <form
-          onSubmit={handleSubmit(debounce(onSubmit, 200))}
-          className={styles.form}>
+        <Form onSubmit={handleSubmit(debounce(onSubmit, 200))}>
           <div>
-            <input
-              className={styles.title}
+            <PopupInput
               {...register("title", { required: true })}
               placeholder={"title"}
               defaultValue={title}
             />
           </div>
           <div>
-            <input
-              className={styles.price}
+            <PopupInput
               type={"number"}
               {...register("price", { required: true, min: 1 })}
               placeholder={"price"}
               defaultValue={price}
             />
           </div>
-          <label className={styles.available}>
+          <PopupCheckboxLabel>
             <input
               defaultChecked={is_available}
               type={"checkbox"}
               {...register("is_available")}
             />
-            is it available?
-          </label>
-          <input type="submit" value={type} className={styles.create} />
-        </form>
+            Is it available?
+          </PopupCheckboxLabel>
+          <FormButtons buttonType={type} />
+        </Form>
       </Popup>
     </>
   );

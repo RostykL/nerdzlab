@@ -1,7 +1,6 @@
-import { NavLink } from "react-router-dom";
-import styles from "../components/header/header.module.scss";
 import { useSelector } from "react-redux";
 import SELECTOR from "../features/selectors";
+import { GoTo, VerticalHeader } from "../components/header/header.styled";
 
 export function notLoggedHeader(Component) {
   return function (props) {
@@ -11,10 +10,10 @@ export function notLoggedHeader(Component) {
     }
 
     return (
-      <header className={styles.header}>
-        <NavLink to={"/login"}>login</NavLink>
-        <NavLink to={"/signup"}>sign up</NavLink>
-      </header>
+      <VerticalHeader>
+        <GoTo to={"/login"}>login</GoTo>
+        <GoTo to={"/signup"}>sign up</GoTo>
+      </VerticalHeader>
     );
   };
 }

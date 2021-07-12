@@ -1,8 +1,6 @@
-import styles from "./allPosts.module.scss";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPosts } from "../../features/posts/actions/getPosts";
-import Loader from "react-loader-spinner";
 import { loginRequired } from "../../hoc/loginRequired";
 import Post from "../../components/post/Post";
 import { toggleCreate } from "../../features/popup/popup";
@@ -10,6 +8,9 @@ import Pagination from "../../components/pagination/Pagination";
 import CreatePost from "../../components/create/createPost";
 import EditPost from "../../components/edit/EditPost";
 import SELECTOR from "../../features/selectors";
+import { ControlPanel, Posts, PostsList, Wrapper } from "./allPosts.styled";
+import Loader from "../../components/loader/Loader";
+import { Button } from "../../styled/general.styled";
 
 function AllPosts() {
   const dispatch = useDispatch();
@@ -19,36 +20,26 @@ function AllPosts() {
     dispatch(getPosts(page));
   }, [dispatch, page]);
 
+  const openPopup = useCallback(() => dispatch(toggleCreate(), []));
+
   return (
     <>
-      {/*Popup*/}
       <CreatePost />
       <EditPost />
 
-      <div className={styles.wrapper}>
-        <div className={styles.posts}>
-          <div className={styles.list}>
-            <div className={styles.loading}>
-              {loading ? (
-                <Loader
-                  type="ThreeDots"
-                  color="#00BFFF"
-                  height={30}
-                  width={30}
-                />
-              ) : null}
-            </div>
+      <Wrapper>
+        <Posts>
+          <PostsList>
+            {loading && <Loader height={40} width={40} />}
             {!loading && posts.map(el => <Post key={el.id} {...el} />)}
-            <button
-              onClick={() => dispatch(toggleCreate())}
-              className={styles.create_post}>
-              create post
-            </button>
             {!loading && !posts.length && "No posts"}
-          </div>
+          </PostsList>
+        </Posts>
+        <ControlPanel>
           <Pagination page={page} len={posts.length} setPage={setPage} />
-        </div>
-      </div>
+          <Button onClick={openPopup}>create post</Button>
+        </ControlPanel>
+      </Wrapper>
     </>
   );
 }

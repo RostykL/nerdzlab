@@ -30,9 +30,9 @@ export const posts = createSlice({
       state.loading = false;
       state.posts.push(action.payload.data);
     },
-    [createPost.rejected]: (state, { payload }) => {
+    [createPost.rejected]: (state, action) => {
       state.status = false;
-      state.error = payload;
+      state.error = action.payload;
     },
 
     [getPosts.pending]: state => {

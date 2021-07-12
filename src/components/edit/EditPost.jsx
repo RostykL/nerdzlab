@@ -14,9 +14,9 @@ function EditPost() {
 
   const dispatch = useDispatch();
   const onSubmitCallback = useCallback(
-    data => {
-      const checkedData = checkInputData(data);
-      dispatch(editPostById({ id, checkedData }));
+    inputData => {
+      const data = checkInputData(inputData);
+      dispatch(editPostById({ id, data }));
       dispatch(toggleAllOff());
     },
     [dispatch, id]

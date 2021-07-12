@@ -7,6 +7,8 @@ import store from "./features/store";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";
 import API from "./helpers/API";
+import "normalize.css";
+import { GlobalStyle } from "./styled/general.styled";
 
 let persistor = persistStore(store);
 API.setupInterceptors(store);
@@ -16,6 +18,7 @@ ReactDOM.render(
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter>
+          <GlobalStyle />
           <App />
         </BrowserRouter>
       </PersistGate>
