@@ -11,7 +11,7 @@ import Popup from "../popup/Popup";
 
 import { debounce } from "lodash";
 import FormButtons from "../FormButtons/FormButtons";
-import usePostById from "../hooks/usePostByid";
+import usePostById from "../../hooks/usePostByid";
 import {
   Form,
   PopupCheckboxLabel,

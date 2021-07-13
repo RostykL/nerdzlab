@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import API from "../../helpers/API";
+import API from "../helpers/API";
 
 function usePostById(id) {
   const [loaded, setLoaded] = useState(false);
