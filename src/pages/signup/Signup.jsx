@@ -27,7 +27,7 @@ function Signup() {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      {error && !logged && "Something went wrong! Check your credentials"}
+      {error && !logged ? "Something went wrong! Check your credentials" : null}
       {logged && "successfully logged in"}
       <div>
         <Input

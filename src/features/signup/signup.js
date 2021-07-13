@@ -18,9 +18,9 @@ const signup = createSlice({
       state.loading = false;
       state.error = null;
     },
-    [signupUser.rejected]: (state, { payload }) => {
+    [signupUser.rejected]: (state, action) => {
       state.loading = false;
-      state.error = payload;
+      state.error = action?.error ?? true;
     },
   },
 });
