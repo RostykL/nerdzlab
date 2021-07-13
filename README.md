@@ -1,10 +1,10 @@
 # React, redux CRUD SPA Application
 
-HOSTED [DEMO](https://nerdzlab-testing-app.vercel.app/).
+HOSTED [DEMO](https://nerdzlab-testing-app-ewwq7sk06-rostykl.vercel.app/).
 
 # Installation
 
-1. Simply download the project and enter it using console
+1. Simply download the project and enter it using the console
 
 ### `yarn`
 
