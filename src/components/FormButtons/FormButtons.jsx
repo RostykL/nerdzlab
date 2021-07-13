@@ -5,7 +5,7 @@ import {
   SubmitButton,
 } from "./formButtons.styled";
 
-function FormButtons({ buttonType, submitFunc = () => {}, ...props }) {
+function FormButtons({ buttonType, submitFunc, ...props }) {
   const submit = useCallback(submitFunc, [submitFunc]);
 
   return (

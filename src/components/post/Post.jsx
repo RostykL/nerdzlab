@@ -20,8 +20,8 @@ function Post({ title, price, is_available, id }) {
     dispatch(deletePost(id));
   }, [dispatch, id]);
 
-  const editPostById = useCallback(() => {
-    dispatch(getPostById(id));
+  const editPostById = useCallback(async () => {
+    await dispatch(getPostById(id));
     dispatch(toggleEdit());
   }, [dispatch, id]);
 
