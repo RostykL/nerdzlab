@@ -4,4 +4,5 @@ export default {
   getAuth: state => state.auth,
   getLogin: state => state.login,
   getSignup: state => state.signup,
+  getSelectedPost: state => state.posts.selectedPost,
 };
