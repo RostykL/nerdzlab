@@ -1,6 +1,6 @@
 # React, redux CRUD SPA Application
 
-HOSTED [DEMO](https://nerdzlab-testing-app-ewwq7sk06-rostykl.vercel.app/).
+HOSTED [DEMO](https://nerdzlab-testing-app-lt4sjd6yl-rostykl.vercel.app/).
 
 # Installation
 
